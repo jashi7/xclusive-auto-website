@@ -5,6 +5,7 @@ import { Label } from "../components/ui/label";
 import { Button } from "../components/ui/button";
 import { useToast } from "../hooks/use-toast";
 import { dealerInfo } from "../mock";
+import { LeadsAPI } from "../api";
 import { useLang } from "../i18n";
 
 export default function Contact() {
@@ -12,14 +13,19 @@ export default function Contact() {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.message) {
       toast({ title: t.contact.missingTitle, description: t.contact.missingDesc });
       return;
     }
-    toast({ title: t.contact.sentTitle, description: t.contact.sentDesc });
-    setForm({ name: "", email: "", phone: "", message: "" });
+    try {
+      await LeadsAPI.create({ kind: "contact", name: form.name, email: form.email, phone: form.phone, message: form.message });
+      toast({ title: t.contact.sentTitle, description: t.contact.sentDesc });
+      setForm({ name: "", email: "", phone: "", message: "" });
+    } catch {
+      toast({ title: "Error", description: "Please try again." });
+    }
   };
 
   return (

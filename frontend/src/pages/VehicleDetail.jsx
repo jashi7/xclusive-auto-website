@@ -1,7 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, Gauge, Fuel, Cog, Palette, ShieldCheck, Phone, CheckCircle2 } from "lucide-react";
 import { Button } from "../components/ui/button";
-import { inventory, dealerInfo } from "../mock";
+import { dealerInfo } from "../mock";
+import { useState, useEffect } from "react";
+import { VehiclesAPI } from "../api";
 import { useLang } from "../i18n";
 
 const formatMiles = (m) => new Intl.NumberFormat("en-US").format(m);
@@ -10,7 +12,12 @@ const formatPrice = (p) => `$${new Intl.NumberFormat("en-US").format(p)}`;
 export default function VehicleDetail() {
   const { t } = useLang();
   const { id } = useParams();
-  const car = inventory.find((c) => String(c.id) === String(id));
+  const [car, setCar] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    VehiclesAPI.get(id).then((v) => setCar({ ...v, image: (v.photos && v.photos[0]) || "", features: v.features || [] })).catch(() => setCar(null)).finally(() => setLoading(false));
+  }, [id]);
+  if (loading) return <main className="pt-32 pb-24 min-h-screen bg-neutral-950 text-white text-center px-6"><p className="text-neutral-500">Loading...</p></main>;
 
   if (!car) {
     return (

@@ -5,11 +5,19 @@ import VehicleCard from "../components/VehicleCard";
 import { Input } from "../components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { Button } from "../components/ui/button";
-import { inventory, makes, bodyStyles, priceRanges } from "../mock";
+import { makes, bodyStyles, priceRanges } from "../mock";
+import { VehiclesAPI } from "../api";
 import { useLang } from "../i18n";
 
 export default function Inventory() {
   const { t } = useLang();
+  const [inventory, setInventory] = useState([]);
+  useEffect(() => {
+    VehiclesAPI.list().then((data) => {
+      const avail = data.filter((v) => !v.sold);
+      setInventory(avail.map((v) => ({ ...v, image: (v.photos && v.photos[0]) || "" })));
+    }).catch(() => setInventory([]));
+  }, []);
   const [params] = useSearchParams();
   const [make, setMake] = useState(params.get("make") || "All Makes");
   const [body, setBody] = useState("All Body Styles");
@@ -43,7 +51,7 @@ export default function Inventory() {
       default: break;
     }
     return result;
-  }, [make, body, maxPrice, query, sort]);
+  }, [inventory, make, body, maxPrice, query, sort]);
 
   return (
     <main className="pt-28 pb-24 min-h-screen bg-neutral-950">

@@ -7,6 +7,7 @@ import { Label } from "../components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { useToast } from "../hooks/use-toast";
 import { dealerInfo } from "../mock";
+import { LeadsAPI } from "../api";
 import { useLang } from "../i18n";
 
 export default function Financing() {
@@ -20,14 +21,25 @@ export default function Financing() {
 
   const handle = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (!form.firstName || !form.lastName || !form.phone) {
       toast({ title: t.fin.missingTitle, description: t.fin.missingDesc });
       return;
     }
-    setSubmitted(true);
-    toast({ title: t.fin.appReceivedToast, description: t.fin.appReceivedDesc });
+    try {
+      await LeadsAPI.create({
+        kind: "financing",
+        first_name: form.firstName, last_name: form.lastName,
+        email: form.email, phone: form.phone,
+        income: form.income, employment: form.employment,
+        down_payment: form.downPayment, comment: form.comment,
+      });
+      setSubmitted(true);
+      toast({ title: t.fin.appReceivedToast, description: t.fin.appReceivedDesc });
+    } catch {
+      toast({ title: "Error", description: "Please try again." });
+    }
   };
 
   return (

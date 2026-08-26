@@ -5,7 +5,8 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import VehicleCard from "../components/VehicleCard";
-import { dealerInfo, inventory, makes, priceRanges, testimonials } from "../mock";
+import { dealerInfo, makes, priceRanges, testimonials } from "../mock";
+import { VehiclesAPI } from "../api";
 import { useLang } from "../i18n";
 
 function useReveal() {
@@ -30,7 +31,18 @@ export default function Home() {
   const [maxPrice, setMaxPrice] = useState(999999);
   const [query, setQuery] = useState("");
 
-  const featured = inventory.slice(0, 6);
+  const [featured, setFeatured] = useState([]);
+  useEffect(() => {
+    VehiclesAPI.list().then((data) => {
+      const available = data.filter((v) => !v.sold);
+      const withImages = available.map((v) => ({
+        ...v,
+        id: v.id,
+        image: (v.photos && v.photos[0]) || "",
+      }));
+      setFeatured(withImages.slice(0, 6));
+    }).catch(() => setFeatured([]));
+  }, []);
 
   const [aboutRef, aboutVisible] = useReveal();
   const [testiRef, testiVisible] = useReveal();
