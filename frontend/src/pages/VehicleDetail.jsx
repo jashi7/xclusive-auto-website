@@ -15,7 +15,7 @@ export default function VehicleDetail() {
       <main className="pt-32 pb-24 min-h-screen bg-neutral-950 text-white text-center px-6">
         <h1 className="font-display text-4xl font-black mb-4">Vehicle not found</h1>
         <Link to="/inventory">
-          <Button className="bg-amber-500 hover:bg-amber-400 text-neutral-950 rounded-full">Back to Inventory</Button>
+          <Button className="bg-red-600 hover:bg-red-500 text-neutral-950 rounded-full">Back to Inventory</Button>
         </Link>
       </main>
     );
@@ -24,7 +24,7 @@ export default function VehicleDetail() {
   return (
     <main className="pt-28 pb-24 min-h-screen bg-neutral-950">
       <div className="max-w-7xl mx-auto px-6">
-        <Link to="/inventory" className="inline-flex items-center gap-2 text-neutral-400 hover:text-amber-400 text-sm mb-6">
+        <Link to="/inventory" className="inline-flex items-center gap-2 text-neutral-400 hover:text-red-500 text-sm mb-6">
           <ArrowLeft className="w-4 h-4" /> Back to Inventory
         </Link>
 
@@ -43,14 +43,14 @@ export default function VehicleDetail() {
           </div>
 
           <div className="lg:col-span-2">
-            <span className="text-amber-500 text-xs uppercase tracking-[0.3em] font-semibold">{car.body}</span>
+            <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">{car.body}</span>
             <h1 className="font-display font-black text-4xl md:text-5xl text-white mt-2 leading-tight">
               {car.year} {car.make}<br />{car.model}
             </h1>
             <p className="text-neutral-400 mt-2">{car.trim}</p>
 
             <div className="mt-6 flex items-baseline gap-3">
-              <span className="font-display font-black text-5xl text-amber-400">{formatPrice(car.price)}</span>
+              <span className="font-display font-black text-5xl text-red-500">{formatPrice(car.price)}</span>
               <span className="text-neutral-500 text-sm">or ask about financing</span>
             </div>
 
@@ -63,7 +63,7 @@ export default function VehicleDetail() {
               ].map((s) => (
                 <div key={s.l} className="p-4 rounded-xl bg-neutral-900 border border-neutral-800">
                   <div className="flex items-center gap-2 mb-1">
-                    <s.i className="w-4 h-4 text-amber-400" />
+                    <s.i className="w-4 h-4 text-red-500" />
                     <span className="text-xs uppercase tracking-wider text-neutral-500">{s.l}</span>
                   </div>
                   <p className="text-white font-medium">{s.v}</p>
@@ -76,23 +76,23 @@ export default function VehicleDetail() {
               <ul className="space-y-2">
                 {car.features.map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm text-neutral-300">
-                    <CheckCircle2 className="w-4 h-4 text-amber-400" /> {f}
+                    <CheckCircle2 className="w-4 h-4 text-red-500" /> {f}
                   </li>
                 ))}
                 <li className="flex items-center gap-2 text-sm text-neutral-300">
-                  <ShieldCheck className="w-4 h-4 text-amber-400" /> Certified Mechanic Inspected
+                  <ShieldCheck className="w-4 h-4 text-red-500" /> Certified Mechanic Inspected
                 </li>
               </ul>
             </div>
 
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <Link to="/financing" className="flex-1">
-                <Button className="w-full bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold h-12 rounded-xl btn-glow">
+                <Button className="w-full bg-red-600 hover:bg-red-500 text-neutral-950 font-semibold h-12 rounded-xl btn-glow">
                   Apply For Financing
                 </Button>
               </Link>
               <a href={`tel:${dealerInfo.phoneRaw}`} className="flex-1">
-                <Button variant="outline" className="w-full bg-transparent border-neutral-700 text-white hover:bg-neutral-800 hover:text-amber-400 h-12 rounded-xl">
+                <Button variant="outline" className="w-full bg-transparent border-neutral-700 text-white hover:bg-neutral-800 hover:text-red-500 h-12 rounded-xl">
                   <Phone className="w-4 h-4 mr-2" /> Call Dealer
                 </Button>
               </a>

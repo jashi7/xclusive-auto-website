@@ -51,9 +51,9 @@ export default function Home() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 grid lg:grid-cols-2 gap-12 items-center">
           <div className="fade-up">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 backdrop-blur-sm mb-6">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-              <span className="text-xs uppercase tracking-widest text-amber-300 font-medium">Buy Here · Pay Here · No Credit Check</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-600/40 bg-red-600/10 backdrop-blur-sm mb-6">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+              <span className="text-xs uppercase tracking-widest text-red-400 font-medium">Buy Here · Pay Here · No Credit Check</span>
             </div>
             <h1 className="font-display font-black text-5xl md:text-7xl leading-[0.95] text-white mb-6">
               Drive The Car <br />
@@ -64,12 +64,12 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/inventory">
-                <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold rounded-full px-7 h-12 btn-glow">
+                <Button size="lg" className="bg-red-600 hover:bg-red-500 text-neutral-950 font-semibold rounded-full px-7 h-12 btn-glow">
                   Browse Inventory <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
               <Link to="/financing">
-                <Button size="lg" variant="outline" className="bg-transparent border-neutral-700 text-white hover:bg-neutral-800 hover:text-amber-400 rounded-full px-7 h-12">
+                <Button size="lg" variant="outline" className="bg-transparent border-neutral-700 text-white hover:bg-neutral-800 hover:text-red-500 rounded-full px-7 h-12">
                   Get Pre-Approved
                 </Button>
               </Link>
@@ -81,7 +81,7 @@ export default function Home() {
                 { n: "0", l: "Credit Check Needed" },
               ].map((s) => (
                 <div key={s.l}>
-                  <div className="font-display text-3xl font-bold text-amber-400">{s.n}</div>
+                  <div className="font-display text-3xl font-bold text-red-500">{s.n}</div>
                   <div className="text-xs text-neutral-500 uppercase tracking-wider">{s.l}</div>
                 </div>
               ))}
@@ -136,7 +136,7 @@ export default function Home() {
                   to={`/inventory?make=${encodeURIComponent(make)}&max=${maxPrice}&q=${encodeURIComponent(query)}`}
                   className="block"
                 >
-                  <Button className="w-full bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold h-12 rounded-xl btn-glow">
+                  <Button className="w-full bg-red-600 hover:bg-red-500 text-neutral-950 font-semibold h-12 rounded-xl btn-glow">
                     Search Vehicles <Search className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
@@ -166,10 +166,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
             <div>
-              <span className="text-amber-500 text-xs uppercase tracking-[0.3em] font-semibold">Featured</span>
+              <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Featured</span>
               <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2">Fresh Off The Lot</h2>
             </div>
-            <Link to="/inventory" className="text-amber-400 hover:text-amber-300 font-medium flex items-center gap-1 group">
+            <Link to="/inventory" className="text-red-500 hover:text-red-400 font-medium flex items-center gap-1 group">
               View All Vehicles <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -185,7 +185,7 @@ export default function Home() {
       <section className="relative section-warm py-24">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <span className="text-amber-500 text-xs uppercase tracking-[0.3em] font-semibold">Why Xclusive</span>
+            <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Why Xclusive</span>
             <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2 mb-6">
               A Better Way To <span className="gradient-text">Buy A Car</span>
             </h2>
@@ -198,9 +198,9 @@ export default function Home() {
                 { i: CreditCard, t: "No Credit Check Financing", d: "Verified income & 4 references — that’s all it takes. Easy in-house financing." },
                 { i: Wrench, t: "Trade-Ins Welcome", d: "Get top value for your trade. We’ll make it simple and fair." },
               ].map((f) => (
-                <div key={f.t} className="flex gap-4 p-5 rounded-xl border border-neutral-800 bg-neutral-900/50 hover:border-amber-500/50 hover:bg-neutral-900 transition-all group">
-                  <div className="w-12 h-12 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-500/20">
-                    <f.i className="w-6 h-6 text-amber-400" />
+                <div key={f.t} className="flex gap-4 p-5 rounded-xl border border-neutral-800 bg-neutral-900/50 hover:border-red-600/50 hover:bg-neutral-900 transition-all group">
+                  <div className="w-12 h-12 rounded-lg bg-red-600/10 border border-red-600/30 flex items-center justify-center flex-shrink-0 group-hover:bg-red-600/20">
+                    <f.i className="w-6 h-6 text-red-500" />
                   </div>
                   <div>
                     <h4 className="font-display font-semibold text-white text-lg">{f.t}</h4>
@@ -222,12 +222,12 @@ export default function Home() {
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="bg-neutral-950/80 backdrop-blur-md border border-neutral-800 rounded-xl p-5">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center">
                       <Phone className="w-5 h-5 text-neutral-950" />
                     </div>
                     <div>
                       <p className="text-xs text-neutral-400 uppercase tracking-wider">Call us today</p>
-                      <a href={`tel:${dealerInfo.phoneRaw}`} className="font-display font-bold text-white text-xl hover:text-amber-400">
+                      <a href={`tel:${dealerInfo.phoneRaw}`} className="font-display font-bold text-white text-xl hover:text-red-500">
                         {dealerInfo.phone}
                       </a>
                     </div>
@@ -243,21 +243,21 @@ export default function Home() {
       <section ref={testiRef} className={`section-dark py-24 section-fade ${testiVisible ? "visible" : ""}`}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <span className="text-amber-500 text-xs uppercase tracking-[0.3em] font-semibold">Reviews</span>
+            <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Reviews</span>
             <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2">Trusted By Drivers</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t) => (
-              <div key={t.name} className="p-8 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-amber-500/50 transition-all">
+              <div key={t.name} className="p-8 rounded-2xl bg-neutral-900 border border-neutral-800 hover:border-red-600/50 transition-all">
                 <div className="flex gap-1 mb-4">
                   {[...Array(t.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    <Star key={i} className="w-4 h-4 fill-red-500 text-red-500" />
                   ))}
                 </div>
                 <p className="text-neutral-300 leading-relaxed mb-6">“{t.text}”</p>
                 <div className="border-t border-neutral-800 pt-4">
                   <p className="font-semibold text-white">{t.name}</p>
-                  <p className="text-xs text-amber-400 mt-0.5">{t.car}</p>
+                  <p className="text-xs text-red-500 mt-0.5">{t.car}</p>
                 </div>
               </div>
             ))}
@@ -266,7 +266,7 @@ export default function Home() {
       </section>
 
       {/* CTA STRIP */}
-      <section className="relative py-20 overflow-hidden" style={{ background: "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)" }}>
+      <section className="relative py-20 overflow-hidden" style={{ background: "linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)" }}>
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="max-w-xl">
             <h2 className="font-display font-black text-3xl md:text-4xl text-neutral-950 leading-tight">
@@ -293,18 +293,18 @@ export default function Home() {
       <section className="section-mid py-24">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <span className="text-amber-500 text-xs uppercase tracking-[0.3em] font-semibold">Visit Us</span>
+            <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Visit Us</span>
             <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2 mb-6">Come Say Hello</h2>
             <div className="flex items-start gap-3 mb-4 text-neutral-300">
-              <MapPin className="w-5 h-5 text-amber-400 mt-0.5" />
+              <MapPin className="w-5 h-5 text-red-500 mt-0.5" />
               <span>{dealerInfo.address}, {dealerInfo.city}</span>
             </div>
             <div className="flex items-start gap-3 mb-8 text-neutral-300">
-              <Phone className="w-5 h-5 text-amber-400 mt-0.5" />
-              <a href={`tel:${dealerInfo.phoneRaw}`} className="hover:text-amber-400">{dealerInfo.phone}</a>
+              <Phone className="w-5 h-5 text-red-500 mt-0.5" />
+              <a href={`tel:${dealerInfo.phoneRaw}`} className="hover:text-red-500">{dealerInfo.phone}</a>
             </div>
             <Link to="/contact">
-              <Button className="bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold rounded-full px-6">
+              <Button className="bg-red-600 hover:bg-red-500 text-neutral-950 font-semibold rounded-full px-6">
                 Get Directions <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>

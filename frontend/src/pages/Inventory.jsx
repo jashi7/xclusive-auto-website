@@ -58,7 +58,7 @@ export default function Inventory() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/70 via-neutral-950/85 to-neutral-950" />
         <div className="relative max-w-7xl mx-auto px-6 py-16">
-          <span className="text-amber-500 text-xs uppercase tracking-[0.3em] font-semibold">Inventory</span>
+          <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Inventory</span>
           <h1 className="font-display font-black text-5xl md:text-6xl text-white mt-2">Available Vehicles</h1>
           <p className="text-neutral-400 mt-3 max-w-xl">Browse our curated selection of hand-inspected cars, trucks & SUVs.</p>
         </div>
@@ -98,7 +98,7 @@ export default function Inventory() {
 
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
           <p className="text-neutral-400 text-sm">
-            <span className="text-amber-400 font-bold">{filtered.length}</span> vehicle{filtered.length !== 1 && "s"} found
+            <span className="text-red-500 font-bold">{filtered.length}</span> vehicle{filtered.length !== 1 && "s"} found
           </p>
           <div className="flex items-center gap-2">
             <Filter className="w-4 h-4 text-neutral-500" />
@@ -117,7 +117,7 @@ export default function Inventory() {
         {filtered.length === 0 ? (
           <div className="text-center py-24 border border-dashed border-neutral-800 rounded-2xl">
             <p className="text-neutral-400">No vehicles match your filters.</p>
-            <Button className="mt-6 bg-amber-500 hover:bg-amber-400 text-neutral-950" onClick={() => {
+            <Button className="mt-6 bg-red-600 hover:bg-red-500 text-neutral-950" onClick={() => {
               setMake("All Makes"); setBody("All Body Styles"); setMaxPrice(999999); setQuery("");
             }}>Reset Filters</Button>
           </div>

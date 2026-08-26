@@ -15,11 +15,11 @@ export default function VehicleCard({ car }) {
             className="w-full h-full object-cover"
             loading="lazy"
           />
-          <div className="absolute top-3 left-3 bg-amber-500 text-neutral-950 text-xs font-bold px-3 py-1 rounded-full">
+          <div className="absolute top-3 left-3 bg-red-600 text-neutral-950 text-xs font-bold px-3 py-1 rounded-full">
             {car.year}
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-            <span className="text-amber-400 text-sm font-semibold tracking-wider uppercase">View Details →</span>
+            <span className="text-red-500 text-sm font-semibold tracking-wider uppercase">View Details →</span>
           </div>
         </div>
         <div className="p-5 flex-1 flex flex-col">
@@ -27,14 +27,14 @@ export default function VehicleCard({ car }) {
             <h3 className="font-display font-bold text-white text-lg leading-tight">
               {car.make} {car.model}
             </h3>
-            <span className="text-amber-400 font-bold text-lg whitespace-nowrap">{formatPrice(car.price)}</span>
+            <span className="text-red-500 font-bold text-lg whitespace-nowrap">{formatPrice(car.price)}</span>
           </div>
           <p className="text-xs text-neutral-500 uppercase tracking-wider mb-4">{car.trim}</p>
           <div className="grid grid-cols-2 gap-2 text-xs text-neutral-400 mt-auto">
-            <div className="flex items-center gap-1.5"><Gauge className="w-3.5 h-3.5 text-amber-500" /> {formatMiles(car.mileage)} mi</div>
-            <div className="flex items-center gap-1.5"><Cog className="w-3.5 h-3.5 text-amber-500" /> {car.transmission}</div>
-            <div className="flex items-center gap-1.5"><Fuel className="w-3.5 h-3.5 text-amber-500" /> {car.fuel}</div>
-            <div className="flex items-center gap-1.5"><Palette className="w-3.5 h-3.5 text-amber-500" /> {car.color}</div>
+            <div className="flex items-center gap-1.5"><Gauge className="w-3.5 h-3.5 text-red-600" /> {formatMiles(car.mileage)} mi</div>
+            <div className="flex items-center gap-1.5"><Cog className="w-3.5 h-3.5 text-red-600" /> {car.transmission}</div>
+            <div className="flex items-center gap-1.5"><Fuel className="w-3.5 h-3.5 text-red-600" /> {car.fuel}</div>
+            <div className="flex items-center gap-1.5"><Palette className="w-3.5 h-3.5 text-red-600" /> {car.color}</div>
           </div>
         </div>
       </div>

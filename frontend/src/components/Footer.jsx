@@ -17,7 +17,7 @@ export default function Footer() {
               <a
                 key={i}
                 href="#"
-                className="w-9 h-9 rounded-full border border-neutral-800 flex items-center justify-center hover:border-amber-500 hover:text-amber-400 transition-colors"
+                className="w-9 h-9 rounded-full border border-neutral-800 flex items-center justify-center hover:border-red-600 hover:text-red-500 transition-colors"
                 aria-label="social"
               >
                 <Icon className="w-4 h-4" />
@@ -29,19 +29,19 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-display font-semibold mb-4 uppercase text-xs tracking-widest">Explore</h4>
           <ul className="space-y-3 text-sm">
-            <li><Link to="/" className="hover:text-amber-400 transition-colors">Home</Link></li>
-            <li><Link to="/inventory" className="hover:text-amber-400 transition-colors">Inventory</Link></li>
-            <li><Link to="/financing" className="hover:text-amber-400 transition-colors">Financing</Link></li>
-            <li><Link to="/contact" className="hover:text-amber-400 transition-colors">Contact</Link></li>
+            <li><Link to="/" className="hover:text-red-500 transition-colors">Home</Link></li>
+            <li><Link to="/inventory" className="hover:text-red-500 transition-colors">Inventory</Link></li>
+            <li><Link to="/financing" className="hover:text-red-500 transition-colors">Financing</Link></li>
+            <li><Link to="/contact" className="hover:text-red-500 transition-colors">Contact</Link></li>
           </ul>
         </div>
 
         <div>
           <h4 className="text-white font-display font-semibold mb-4 uppercase text-xs tracking-widest">Visit Us</h4>
           <ul className="space-y-3 text-sm text-neutral-400">
-            <li className="flex gap-3"><MapPin className="w-4 h-4 mt-0.5 text-amber-400 flex-shrink-0" /><span>{dealerInfo.address}<br />{dealerInfo.city}</span></li>
-            <li className="flex gap-3"><Phone className="w-4 h-4 mt-0.5 text-amber-400 flex-shrink-0" /><a href={`tel:${dealerInfo.phoneRaw}`} className="hover:text-amber-400">{dealerInfo.phone}</a></li>
-            <li className="flex gap-3"><Mail className="w-4 h-4 mt-0.5 text-amber-400 flex-shrink-0" /><a href={`mailto:${dealerInfo.email}`} className="hover:text-amber-400">{dealerInfo.email}</a></li>
+            <li className="flex gap-3"><MapPin className="w-4 h-4 mt-0.5 text-red-500 flex-shrink-0" /><span>{dealerInfo.address}<br />{dealerInfo.city}</span></li>
+            <li className="flex gap-3"><Phone className="w-4 h-4 mt-0.5 text-red-500 flex-shrink-0" /><a href={`tel:${dealerInfo.phoneRaw}`} className="hover:text-red-500">{dealerInfo.phone}</a></li>
+            <li className="flex gap-3"><Mail className="w-4 h-4 mt-0.5 text-red-500 flex-shrink-0" /><a href={`mailto:${dealerInfo.email}`} className="hover:text-red-500">{dealerInfo.email}</a></li>
           </ul>
         </div>
 

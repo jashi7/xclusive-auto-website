@@ -24,10 +24,10 @@ export default function Contact() {
     <main className="pt-28 pb-24 min-h-screen bg-neutral-950">
       <div className="relative border-b border-neutral-900">
         <div className="absolute inset-0" style={{
-          background: "radial-gradient(circle at 70% 50%, rgba(245,158,11,0.15), transparent 60%)"
+          background: "radial-gradient(circle at 70% 50%, rgba(220,38,38,0.15), transparent 60%)"
         }} />
         <div className="relative max-w-7xl mx-auto px-6 py-16">
-          <span className="text-amber-500 text-xs uppercase tracking-[0.3em] font-semibold">Contact</span>
+          <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Contact</span>
           <h1 className="font-display font-black text-5xl md:text-6xl text-white mt-2">Get In Touch</h1>
           <p className="text-neutral-400 mt-3 max-w-xl">Questions about a vehicle, financing, or trade-in? We’re here to help.</p>
         </div>
@@ -40,20 +40,20 @@ export default function Contact() {
             { i: Mail, t: "Email", v: dealerInfo.email, href: `mailto:${dealerInfo.email}` },
             { i: MapPin, t: "Address", v: `${dealerInfo.address}, ${dealerInfo.city}` },
           ].map((c) => (
-            <a key={c.t} href={c.href || "#"} className="flex gap-4 p-5 rounded-xl border border-neutral-800 bg-neutral-900/60 hover:border-amber-500/50 transition group">
-              <div className="w-12 h-12 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center flex-shrink-0">
-                <c.i className="w-5 h-5 text-amber-400" />
+            <a key={c.t} href={c.href || "#"} className="flex gap-4 p-5 rounded-xl border border-neutral-800 bg-neutral-900/60 hover:border-red-600/50 transition group">
+              <div className="w-12 h-12 rounded-lg bg-red-600/10 border border-red-600/30 flex items-center justify-center flex-shrink-0">
+                <c.i className="w-5 h-5 text-red-500" />
               </div>
               <div>
                 <p className="text-xs uppercase tracking-wider text-neutral-500">{c.t}</p>
-                <p className="text-white font-medium group-hover:text-amber-400 transition">{c.v}</p>
+                <p className="text-white font-medium group-hover:text-red-500 transition">{c.v}</p>
               </div>
             </a>
           ))}
 
           <div className="p-6 rounded-xl border border-neutral-800 bg-neutral-900/60">
             <div className="flex items-center gap-3 mb-4">
-              <Clock className="w-5 h-5 text-amber-400" />
+              <Clock className="w-5 h-5 text-red-500" />
               <h3 className="font-display font-bold text-white text-lg">Dealership Hours</h3>
             </div>
             <ul className="space-y-2 text-sm">
@@ -99,9 +99,9 @@ export default function Contact() {
             </div>
             <div>
               <Label className="text-neutral-300 text-xs uppercase tracking-wider">Message</Label>
-              <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={5} className="w-full bg-neutral-950 border border-neutral-800 rounded-md text-white mt-1.5 p-3 focus:outline-none focus:border-amber-500" />
+              <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={5} className="w-full bg-neutral-950 border border-neutral-800 rounded-md text-white mt-1.5 p-3 focus:outline-none focus:border-red-600" />
             </div>
-            <Button type="submit" className="w-full bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold h-12 rounded-xl btn-glow">
+            <Button type="submit" className="w-full bg-red-600 hover:bg-red-500 text-neutral-950 font-semibold h-12 rounded-xl btn-glow">
               Send Message <Send className="w-4 h-4 ml-2" />
             </Button>
           </div>

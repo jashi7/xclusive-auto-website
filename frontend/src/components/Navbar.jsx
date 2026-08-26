@@ -44,7 +44,7 @@ export default function Navbar() {
           />
           <div className="hidden sm:flex flex-col leading-tight">
             <span className="font-display font-bold text-white text-lg tracking-tight">Xclusive Auto</span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-amber-500">Hanover, MD</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-red-600">Hanover, MD</span>
           </div>
         </Link>
 
@@ -55,7 +55,7 @@ export default function Navbar() {
               to={l.to}
               className={({ isActive }) =>
                 `nav-link text-sm font-medium tracking-wide transition-colors ${
-                  isActive ? "text-amber-400 active" : "text-neutral-200 hover:text-white"
+                  isActive ? "text-red-500 active" : "text-neutral-200 hover:text-white"
                 }`
               }
               end={l.to === "/"}
@@ -68,13 +68,13 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-4">
           <a
             href={`tel:${dealerInfo.phoneRaw}`}
-            className="flex items-center gap-2 text-sm text-neutral-200 hover:text-amber-400 transition-colors"
+            className="flex items-center gap-2 text-sm text-neutral-200 hover:text-red-500 transition-colors"
           >
             <Phone className="w-4 h-4" />
             <span className="font-medium">{dealerInfo.phone}</span>
           </a>
           <Link to="/inventory">
-            <Button className="bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold rounded-full px-5 btn-glow">
+            <Button className="bg-red-600 hover:bg-red-500 text-neutral-950 font-semibold rounded-full px-5 btn-glow">
               View Inventory
             </Button>
           </Link>
@@ -101,7 +101,7 @@ export default function Navbar() {
               key={l.to}
               to={l.to}
               className={({ isActive }) =>
-                `text-base font-medium ${isActive ? "text-amber-400" : "text-neutral-200"}`
+                `text-base font-medium ${isActive ? "text-red-500" : "text-neutral-200"}`
               }
               end={l.to === "/"}
             >
@@ -112,7 +112,7 @@ export default function Navbar() {
             href={`tel:${dealerInfo.phoneRaw}`}
             className="flex items-center gap-2 text-neutral-200"
           >
-            <Phone className="w-4 h-4 text-amber-400" /> {dealerInfo.phone}
+            <Phone className="w-4 h-4 text-red-500" /> {dealerInfo.phone}
           </a>
         </div>
       </div>
