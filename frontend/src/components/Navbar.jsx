@@ -44,7 +44,7 @@ export default function Navbar() {
           />
           <div className="hidden sm:flex flex-col leading-tight">
             <span className="font-display font-bold text-white text-lg tracking-tight">Xclusive Auto</span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-red-600">Hanover, MD</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-red-600">Se Habla Español</span>
           </div>
         </Link>
 

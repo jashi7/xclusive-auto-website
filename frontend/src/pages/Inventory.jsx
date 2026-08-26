@@ -61,6 +61,7 @@ export default function Inventory() {
           <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Inventory</span>
           <h1 className="font-display font-black text-5xl md:text-6xl text-white mt-2">Available Vehicles</h1>
           <p className="text-neutral-400 mt-3 max-w-xl">Browse our curated selection of hand-inspected cars, trucks & SUVs.</p>
+          <p className="text-sm text-neutral-500 italic mt-1 max-w-xl">Vehículos disponibles · Autos, camionetas y SUVs inspeccionados</p>
         </div>
       </div>
 

@@ -46,7 +46,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-white font-display font-semibold mb-4 uppercase text-xs tracking-widest">Hours</h4>
+          <h4 className="text-white font-display font-semibold mb-4 uppercase text-xs tracking-widest">Hours <span className="text-neutral-500 normal-case italic tracking-normal">· Horario</span></h4>
           <ul className="space-y-2 text-sm">
             {dealerInfo.hours.map((h) => (
               <li key={h.day} className="flex justify-between gap-4">

@@ -37,7 +37,9 @@ export default function Financing() {
         <div className="relative max-w-7xl mx-auto px-6 py-16">
           <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Financing</span>
           <h1 className="font-display font-black text-5xl md:text-6xl text-white mt-2">Buy Here · Pay Here</h1>
+          <p className="text-sm text-neutral-500 italic mt-1">Compra Aquí · Paga Aquí</p>
           <p className="text-neutral-400 mt-3 max-w-xl">No credit check needed. Verified income and four personal references — you’re approved.</p>
+          <p className="text-sm text-neutral-500 italic mt-1 max-w-xl">Sin chequeo de crédito. Solo necesitas comprobante de ingresos y cuatro referencias personales — ¡aprobado!</p>
         </div>
       </div>
 
@@ -57,8 +59,9 @@ export default function Financing() {
             </div>
           ))}
           <div className="p-6 rounded-2xl bg-gradient-to-br from-red-600 to-red-700 text-neutral-950">
-            <h3 className="font-display font-bold text-xl mb-2">Prefer to talk?</h3>
-            <p className="text-sm opacity-90 mb-4">Give us a call — we’ll walk you through the approval process in minutes.</p>
+            <h3 className="font-display font-bold text-xl mb-1">Prefer to talk?</h3>
+            <p className="text-xs italic opacity-80 mb-2">¿Prefieres hablar?</p>
+            <p className="text-sm opacity-90 mb-4">Give us a call — we’ll walk you through the approval process in minutes. <span className="italic">Llámanos y te ayudamos en minutos.</span></p>
             <a href={`tel:${dealerInfo.phoneRaw}`}>
               <Button className="bg-neutral-950 hover:bg-neutral-800 text-white rounded-full font-semibold">
                 Call {dealerInfo.phone}
@@ -84,7 +87,8 @@ export default function Financing() {
           ) : (
             <form onSubmit={onSubmit} className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8">
               <h2 className="font-display font-bold text-2xl text-white mb-1">Quick Application</h2>
-              <p className="text-neutral-500 text-sm mb-6">Takes less than 2 minutes.</p>
+              <p className="text-neutral-500 text-sm mb-1">Takes less than 2 minutes.</p>
+              <p className="text-neutral-600 text-xs italic mb-6">Solicitud rápida · Toma menos de 2 minutos</p>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label className="text-neutral-300 text-xs uppercase tracking-wider">First Name</Label>

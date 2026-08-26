@@ -29,7 +29,9 @@ export default function Contact() {
         <div className="relative max-w-7xl mx-auto px-6 py-16">
           <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Contact</span>
           <h1 className="font-display font-black text-5xl md:text-6xl text-white mt-2">Get In Touch</h1>
+          <p className="text-sm text-neutral-500 italic mt-1">Contáctanos</p>
           <p className="text-neutral-400 mt-3 max-w-xl">Questions about a vehicle, financing, or trade-in? We’re here to help.</p>
+          <p className="text-sm text-neutral-500 italic mt-1 max-w-xl">¿Preguntas sobre un vehículo, financiamiento o intercambio? Estamos para ayudarte.</p>
         </div>
       </div>
 
@@ -55,6 +57,7 @@ export default function Contact() {
             <div className="flex items-center gap-3 mb-4">
               <Clock className="w-5 h-5 text-red-500" />
               <h3 className="font-display font-bold text-white text-lg">Dealership Hours</h3>
+              <span className="text-xs italic text-neutral-500 ml-auto">Horario</span>
             </div>
             <ul className="space-y-2 text-sm">
               {dealerInfo.hours.map((h) => (
@@ -81,7 +84,8 @@ export default function Contact() {
 
         <form onSubmit={onSubmit} className="bg-neutral-900 border border-neutral-800 rounded-2xl p-8 h-fit">
           <h2 className="font-display font-bold text-2xl text-white mb-1">Send Us A Message</h2>
-          <p className="text-neutral-500 text-sm mb-6">We usually respond within an hour during business hours.</p>
+          <p className="text-neutral-500 text-sm mb-1">We usually respond within an hour during business hours.</p>
+          <p className="text-neutral-600 text-xs italic mb-6">Envíanos un mensaje · Respondemos dentro de una hora</p>
           <div className="space-y-4">
             <div>
               <Label className="text-neutral-300 text-xs uppercase tracking-wider">Name</Label>

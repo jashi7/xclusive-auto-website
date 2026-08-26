@@ -55,12 +55,16 @@ export default function Home() {
               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
               <span className="text-xs uppercase tracking-widest text-red-400 font-medium">Buy Here · Pay Here · No Credit Check</span>
             </div>
+            <p className="text-xs text-neutral-500 mt-2 italic">Compra Aquí · Paga Aquí · Sin Chequeo de Crédito</p>
             <h1 className="font-display font-black text-5xl md:text-7xl leading-[0.95] text-white mb-6">
               Drive The Car <br />
               <span className="gradient-text">You Deserve.</span>
             </h1>
-            <p className="text-lg text-neutral-300 max-w-xl mb-8 leading-relaxed">
+            <p className="text-lg text-neutral-300 max-w-xl mb-2 leading-relaxed">
               Hand-picked, certified pre-owned vehicles at honest prices in Hanover, MD. Easy financing for every credit story.
+            </p>
+            <p className="text-sm text-neutral-500 italic mb-8">
+              Vehículos usados certificados a precios honestos en Hanover, MD. Financiamiento fácil para todos.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/inventory">
@@ -92,7 +96,8 @@ export default function Home() {
           <div className="lg:justify-self-end w-full max-w-md">
             <div className="bg-neutral-900/80 backdrop-blur-xl border border-neutral-800 rounded-2xl p-8 shadow-2xl">
               <h3 className="font-display font-bold text-2xl text-white mb-1">Find Your Vehicle</h3>
-              <p className="text-sm text-neutral-400 mb-6">Search our current inventory</p>
+              <p className="text-sm text-neutral-400 mb-1">Search our current inventory</p>
+              <p className="text-xs text-neutral-500 italic mb-6">Encuentra tu vehículo · Busca nuestro inventario</p>
               <div className="space-y-4">
                 <div>
                   <label className="text-xs uppercase tracking-wider text-neutral-500 mb-1.5 block">Make</label>
@@ -168,6 +173,7 @@ export default function Home() {
             <div>
               <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Featured</span>
               <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2">Fresh Off The Lot</h2>
+              <p className="text-sm text-neutral-500 italic mt-1">Recién llegados al lote</p>
             </div>
             <Link to="/inventory" className="text-red-500 hover:text-red-400 font-medium flex items-center gap-1 group">
               View All Vehicles <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -186,9 +192,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Why Xclusive</span>
-            <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2 mb-6">
+            <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2 mb-2">
               A Better Way To <span className="gradient-text">Buy A Car</span>
             </h2>
+            <p className="text-sm text-neutral-500 italic mb-6">Una mejor manera de comprar un auto</p>
             <p className="text-neutral-400 leading-relaxed mb-8">
               We’ve been serving the Hanover community with reliable, hand-inspected vehicles and honest financing. No pressure. No games. Just great cars.
             </p>
@@ -245,6 +252,7 @@ export default function Home() {
           <div className="text-center mb-14">
             <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Reviews</span>
             <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2">Trusted By Drivers</h2>
+            <p className="text-sm text-neutral-500 italic mt-1">De confianza para nuestros clientes</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t) => (
@@ -272,6 +280,7 @@ export default function Home() {
             <h2 className="font-display font-black text-3xl md:text-4xl text-neutral-950 leading-tight">
               Ready to drive off the lot today?
             </h2>
+            <p className="text-neutral-900/90 italic text-sm mt-1">¿Listo para llevarte tu auto hoy?</p>
             <p className="text-neutral-900/80 mt-2">Come visit our lot in Hanover — or start online in 60 seconds.</p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -294,7 +303,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Visit Us</span>
-            <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2 mb-6">Come Say Hello</h2>
+            <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2 mb-2">Come Say Hello</h2>
+            <p className="text-sm text-neutral-500 italic mb-6">Ven a saludarnos</p>
             <div className="flex items-start gap-3 mb-4 text-neutral-300">
               <MapPin className="w-5 h-5 text-red-500 mt-0.5" />
               <span>{dealerInfo.address}, {dealerInfo.city}</span>
