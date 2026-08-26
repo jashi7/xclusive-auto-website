@@ -7,7 +7,7 @@ export const dealerInfo = {
   city: "Hanover, MD 21076",
   phone: "(310) 591-0548",
   phoneRaw: "3105910548",
-  email: "sales@xclusiveautollc.com",
+  email: "xclusiveautomd@gmail.com",
   hours: [
     { day: "Monday", time: "9:00 AM - 6:00 PM", open: true },
     { day: "Tuesday", time: "9:00 AM - 6:00 PM", open: true },
