@@ -45,21 +45,39 @@ export default function Contact() {
 
       <div className="max-w-7xl mx-auto px-6 py-14 grid lg:grid-cols-2 gap-10">
         <div className="space-y-4">
-          {[
-            { i: Phone, t: t.contact.phone, v: dealerInfo.phone, href: `tel:${dealerInfo.phoneRaw}` },
-            { i: Mail, t: t.contact.email, v: dealerInfo.email, href: `mailto:${dealerInfo.email}` },
-            { i: MapPin, t: t.contact.address, v: `${dealerInfo.address}, ${dealerInfo.city}` },
-          ].map((c) => (
-            <a key={c.t} href={c.href || "#"} className="flex gap-4 p-5 rounded-xl border border-neutral-800 bg-neutral-900/60 hover:border-red-600/50 transition group">
-              <div className="w-12 h-12 rounded-lg bg-red-600/10 border border-red-600/30 flex items-center justify-center flex-shrink-0">
-                <c.i className="w-5 h-5 text-red-500" />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-wider text-neutral-500">{c.t}</p>
-                <p className="text-white font-medium group-hover:text-red-500 transition">{c.v}</p>
-              </div>
-            </a>
-          ))}
+          {(() => {
+            const addr = encodeURIComponent(`${dealerInfo.address}, ${dealerInfo.city}`);
+            const googleUrl = `https://www.google.com/maps/dir/?api=1&destination=${addr}`;
+            const appleUrl = `https://maps.apple.com/?daddr=${addr}`;
+            const cards = [
+              { i: Phone, t: t.contact.phone, v: dealerInfo.phone, href: `tel:${dealerInfo.phoneRaw}` },
+              { i: Mail, t: t.contact.email, v: dealerInfo.email, href: `mailto:${dealerInfo.email}` },
+              { i: MapPin, t: t.contact.address, v: `${dealerInfo.address}, ${dealerInfo.city}`, href: googleUrl, isAddress: true, appleUrl, googleUrl },
+            ];
+            return cards.map((c) => (
+              <a key={c.t} href={c.href || "#"} target={c.isAddress ? "_blank" : undefined} rel={c.isAddress ? "noopener noreferrer" : undefined} className="flex gap-4 p-5 rounded-xl border border-neutral-800 bg-neutral-900/60 hover:border-red-600/50 transition group">
+                <div className="w-12 h-12 rounded-lg bg-red-600/10 border border-red-600/30 flex items-center justify-center flex-shrink-0">
+                  <c.i className="w-5 h-5 text-red-500" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs uppercase tracking-wider text-neutral-500">{c.t}</p>
+                  <p className="text-white font-medium group-hover:text-red-500 transition">{c.v}</p>
+                  {c.isAddress && (
+                    <div className="flex gap-2 mt-3" onClick={(e) => e.stopPropagation()}>
+                      <a href={c.googleUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-neutral-700 hover:border-red-600 hover:bg-red-600/10 text-xs font-medium text-neutral-200 transition">
+                        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="currentColor" aria-hidden="true"><path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 7 12 8 12s8-6.75 8-12c0-4.42-3.58-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                        Google Maps
+                      </a>
+                      <a href={c.appleUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-neutral-700 hover:border-red-600 hover:bg-red-600/10 text-xs font-medium text-neutral-200 transition">
+                        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                        Apple Maps
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </a>
+            ));
+          })()}
 
           <div className="p-6 rounded-xl border border-neutral-800 bg-neutral-900/60">
             <div className="flex items-center gap-3 mb-4">
