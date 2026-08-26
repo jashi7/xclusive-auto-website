@@ -2,20 +2,22 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, Gauge, Fuel, Cog, Palette, ShieldCheck, Phone, CheckCircle2 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { inventory, dealerInfo } from "../mock";
+import { useLang } from "../i18n";
 
 const formatMiles = (m) => new Intl.NumberFormat("en-US").format(m);
 const formatPrice = (p) => `$${new Intl.NumberFormat("en-US").format(p)}`;
 
 export default function VehicleDetail() {
+  const { t } = useLang();
   const { id } = useParams();
   const car = inventory.find((c) => String(c.id) === String(id));
 
   if (!car) {
     return (
       <main className="pt-32 pb-24 min-h-screen bg-neutral-950 text-white text-center px-6">
-        <h1 className="font-display text-4xl font-black mb-4">Vehicle not found</h1>
+        <h1 className="font-display text-4xl font-black mb-4">{t.veh.notFound}</h1>
         <Link to="/inventory">
-          <Button className="bg-red-600 hover:bg-red-500 text-neutral-950 rounded-full">Back to Inventory</Button>
+          <Button className="bg-red-600 hover:bg-red-500 text-neutral-950 rounded-full">{t.veh.backBtn}</Button>
         </Link>
       </main>
     );
@@ -25,7 +27,7 @@ export default function VehicleDetail() {
     <main className="pt-28 pb-24 min-h-screen bg-neutral-950">
       <div className="max-w-7xl mx-auto px-6">
         <Link to="/inventory" className="inline-flex items-center gap-2 text-neutral-400 hover:text-red-500 text-sm mb-6">
-          <ArrowLeft className="w-4 h-4" /> Back to Inventory
+          <ArrowLeft className="w-4 h-4" /> {t.veh.back}
         </Link>
 
         <div className="grid lg:grid-cols-5 gap-10">
@@ -51,15 +53,15 @@ export default function VehicleDetail() {
 
             <div className="mt-6 flex items-baseline gap-3">
               <span className="font-display font-black text-5xl text-red-500">{formatPrice(car.price)}</span>
-              <span className="text-neutral-500 text-sm">or ask about financing</span>
+              <span className="text-neutral-500 text-sm">{t.veh.orAsk}</span>
             </div>
 
             <div className="grid grid-cols-2 gap-3 mt-8">
               {[
-                { i: Gauge, l: "Mileage", v: `${formatMiles(car.mileage)} mi` },
-                { i: Cog, l: "Transmission", v: car.transmission },
-                { i: Fuel, l: "Fuel", v: car.fuel },
-                { i: Palette, l: "Color", v: car.color },
+                { i: Gauge, l: t.veh.mileage, v: `${formatMiles(car.mileage)} mi` },
+                { i: Cog, l: t.veh.transmission, v: car.transmission },
+                { i: Fuel, l: t.veh.fuel, v: car.fuel },
+                { i: Palette, l: t.veh.color, v: car.color },
               ].map((s) => (
                 <div key={s.l} className="p-4 rounded-xl bg-neutral-900 border border-neutral-800">
                   <div className="flex items-center gap-2 mb-1">
@@ -72,7 +74,7 @@ export default function VehicleDetail() {
             </div>
 
             <div className="mt-6 p-5 rounded-xl bg-neutral-900 border border-neutral-800">
-              <h3 className="font-display font-bold text-white text-lg mb-3">Features</h3>
+              <h3 className="font-display font-bold text-white text-lg mb-3">{t.veh.features}</h3>
               <ul className="space-y-2">
                 {car.features.map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm text-neutral-300">
@@ -80,7 +82,7 @@ export default function VehicleDetail() {
                   </li>
                 ))}
                 <li className="flex items-center gap-2 text-sm text-neutral-300">
-                  <ShieldCheck className="w-4 h-4 text-red-500" /> Certified Mechanic Inspected
+                  <ShieldCheck className="w-4 h-4 text-red-500" /> {t.veh.certified}
                 </li>
               </ul>
             </div>
@@ -88,12 +90,12 @@ export default function VehicleDetail() {
             <div className="mt-6 flex flex-col sm:flex-row gap-3">
               <Link to="/financing" className="flex-1">
                 <Button className="w-full bg-red-600 hover:bg-red-500 text-neutral-950 font-semibold h-12 rounded-xl btn-glow">
-                  Apply For Financing
+                  {t.veh.apply}
                 </Button>
               </Link>
               <a href={`tel:${dealerInfo.phoneRaw}`} className="flex-1">
                 <Button variant="outline" className="w-full bg-transparent border-neutral-700 text-white hover:bg-neutral-800 hover:text-red-500 h-12 rounded-xl">
-                  <Phone className="w-4 h-4 mr-2" /> Call Dealer
+                  <Phone className="w-4 h-4 mr-2" /> {t.veh.callDealer}
                 </Button>
               </a>
             </div>

@@ -6,8 +6,10 @@ import { Input } from "../components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { Button } from "../components/ui/button";
 import { inventory, makes, bodyStyles, priceRanges } from "../mock";
+import { useLang } from "../i18n";
 
 export default function Inventory() {
+  const { t } = useLang();
   const [params] = useSearchParams();
   const [make, setMake] = useState(params.get("make") || "All Makes");
   const [body, setBody] = useState("All Body Styles");
@@ -58,10 +60,10 @@ export default function Inventory() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/70 via-neutral-950/85 to-neutral-950" />
         <div className="relative max-w-7xl mx-auto px-6 py-16">
-          <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Inventory</span>
-          <h1 className="font-display font-black text-5xl md:text-6xl text-white mt-2">Available Vehicles</h1>
-          <p className="text-neutral-400 mt-3 max-w-xl">Browse our curated selection of hand-inspected cars, trucks & SUVs.</p>
-          <p className="text-sm text-neutral-500 italic mt-1 max-w-xl">Vehículos disponibles · Autos, camionetas y SUVs inspeccionados</p>
+          <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">{t.inv.eyebrow}</span>
+          <h1 className="font-display font-black text-5xl md:text-6xl text-white mt-2">{t.inv.title}</h1>
+          <p className="text-neutral-400 mt-3 max-w-xl">{t.inv.desc}</p>
+          
         </div>
       </div>
 
@@ -73,43 +75,43 @@ export default function Inventory() {
             <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search by year, make or model..."
+              placeholder={t.inv.searchPh}
               className="bg-neutral-950 border-neutral-800 text-white h-11 pl-10 placeholder:text-neutral-600"
             />
           </div>
           <Select value={make} onValueChange={setMake}>
             <SelectTrigger className="bg-neutral-950 border-neutral-800 text-white h-11"><SelectValue /></SelectTrigger>
             <SelectContent className="bg-neutral-900 border-neutral-800 text-white">
-              {makes.map((m) => <SelectItem key={m} value={m}>{m}</SelectItem>)}
+              {makes.map((m) => <SelectItem key={m} value={m}>{m === "All Makes" ? t.search.allMakes : m}</SelectItem>)}
             </SelectContent>
           </Select>
           <Select value={body} onValueChange={setBody}>
             <SelectTrigger className="bg-neutral-950 border-neutral-800 text-white h-11"><SelectValue /></SelectTrigger>
             <SelectContent className="bg-neutral-900 border-neutral-800 text-white">
-              {bodyStyles.map((b) => <SelectItem key={b} value={b}>{b}</SelectItem>)}
+              {bodyStyles.map((b) => <SelectItem key={b} value={b}>{b === "All Body Styles" ? t.search.allBodies : b}</SelectItem>)}
             </SelectContent>
           </Select>
           <Select value={String(maxPrice)} onValueChange={(v) => setMaxPrice(Number(v))}>
             <SelectTrigger className="bg-neutral-950 border-neutral-800 text-white h-11"><SelectValue /></SelectTrigger>
             <SelectContent className="bg-neutral-900 border-neutral-800 text-white">
-              {priceRanges.map((p) => <SelectItem key={p.value} value={String(p.value)}>{p.label}</SelectItem>)}
+              {priceRanges.map((p) => <SelectItem key={p.value} value={String(p.value)}>{p.label === "No Max Price" ? t.search.noMax : p.label}</SelectItem>)}
             </SelectContent>
           </Select>
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
           <p className="text-neutral-400 text-sm">
-            <span className="text-red-500 font-bold">{filtered.length}</span> vehicle{filtered.length !== 1 && "s"} found
+            <span className="text-red-500 font-bold">{filtered.length}</span> {filtered.length === 1 ? t.inv.found : t.inv.foundPlural}
           </p>
           <div className="flex items-center gap-2">
             <Filter className="w-4 h-4 text-neutral-500" />
             <Select value={sort} onValueChange={setSort}>
               <SelectTrigger className="bg-neutral-900 border-neutral-800 text-white h-10 w-48"><SelectValue /></SelectTrigger>
               <SelectContent className="bg-neutral-900 border-neutral-800 text-white">
-                <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                <SelectItem value="year-desc">Newest First</SelectItem>
-                <SelectItem value="miles-asc">Lowest Miles</SelectItem>
+                <SelectItem value="price-asc">{t.inv.sortPriceAsc}</SelectItem>
+                <SelectItem value="price-desc">{t.inv.sortPriceDesc}</SelectItem>
+                <SelectItem value="year-desc">{t.inv.sortYear}</SelectItem>
+                <SelectItem value="miles-asc">{t.inv.sortMiles}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -117,10 +119,10 @@ export default function Inventory() {
 
         {filtered.length === 0 ? (
           <div className="text-center py-24 border border-dashed border-neutral-800 rounded-2xl">
-            <p className="text-neutral-400">No vehicles match your filters.</p>
+            <p className="text-neutral-400">{t.inv.noMatch}</p>
             <Button className="mt-6 bg-red-600 hover:bg-red-500 text-neutral-950" onClick={() => {
               setMake("All Makes"); setBody("All Body Styles"); setMaxPrice(999999); setQuery("");
-            }}>Reset Filters</Button>
+            }}>{t.inv.reset}</Button>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

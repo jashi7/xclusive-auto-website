@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import WhatsAppFab from "./components/WhatsAppFab";
+import { LanguageProvider } from "./i18n";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
   }, []);
 
   return (
+    <LanguageProvider>
     <div className="App bg-neutral-950 min-h-screen text-white">
       <BrowserRouter>
         <ScrollToTop />
@@ -34,6 +36,7 @@ function App() {
         <Toaster />
       </BrowserRouter>
     </div>
+    </LanguageProvider>
   );
 }
 

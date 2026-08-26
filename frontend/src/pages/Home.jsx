@@ -6,6 +6,7 @@ import { Input } from "../components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import VehicleCard from "../components/VehicleCard";
 import { dealerInfo, inventory, makes, priceRanges, testimonials } from "../mock";
+import { useLang } from "../i18n";
 
 function useReveal() {
   const ref = useRef(null);
@@ -24,6 +25,7 @@ function useReveal() {
 }
 
 export default function Home() {
+  const { t } = useLang();
   const [make, setMake] = useState("All Makes");
   const [maxPrice, setMaxPrice] = useState(999999);
   const [query, setQuery] = useState("");
@@ -53,36 +55,34 @@ export default function Home() {
           <div className="fade-up">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-600/40 bg-red-600/10 backdrop-blur-sm mb-6">
               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-              <span className="text-xs uppercase tracking-widest text-red-400 font-medium">Buy Here · Pay Here · No Credit Check</span>
+              <span className="text-xs uppercase tracking-widest text-red-400 font-medium">{t.hero.badge}</span>
             </div>
-            <p className="text-xs text-neutral-500 mt-2 italic">Compra Aquí · Paga Aquí · Sin Chequeo de Crédito</p>
+            
             <h1 className="font-display font-black text-5xl md:text-7xl leading-[0.95] text-white mb-6">
-              Drive The Car <br />
-              <span className="gradient-text">You Deserve.</span>
+              {t.hero.title1} <br />
+              <span className="gradient-text">{t.hero.title2}</span>
             </h1>
-            <p className="text-lg text-neutral-300 max-w-xl mb-2 leading-relaxed">
-              Hand-picked, certified pre-owned vehicles at honest prices in Hanover, MD. Easy financing for every credit story.
+            <p className="text-lg text-neutral-300 max-w-xl mb-8 leading-relaxed">
+              {t.hero.subtitle}
             </p>
-            <p className="text-sm text-neutral-500 italic mb-8">
-              Vehículos usados certificados a precios honestos en Hanover, MD. Financiamiento fácil para todos.
-            </p>
+            
             <div className="flex flex-wrap gap-4">
               <Link to="/inventory">
                 <Button size="lg" className="bg-red-600 hover:bg-red-500 text-neutral-950 font-semibold rounded-full px-7 h-12 btn-glow">
-                  Browse Inventory <ArrowRight className="w-4 h-4 ml-2" />
+                  {t.hero.browse} <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
               <Link to="/financing">
                 <Button size="lg" variant="outline" className="bg-transparent border-neutral-700 text-white hover:bg-neutral-800 hover:text-red-500 rounded-full px-7 h-12">
-                  Get Pre-Approved
+                  {t.hero.getApproved}
                 </Button>
               </Link>
             </div>
             <div className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-neutral-800/60">
               {[
-                { n: "500+", l: "Happy Drivers" },
-                { n: "12+", l: "Vehicles In Stock" },
-                { n: "0", l: "Credit Check Needed" },
+                { n: "500+", l: t.hero.happyDrivers },
+                { n: "12+", l: t.hero.inStock },
+                { n: "0", l: t.hero.noCheckNeeded },
               ].map((s) => (
                 <div key={s.l}>
                   <div className="font-display text-3xl font-bold text-red-500">{s.n}</div>
@@ -95,44 +95,44 @@ export default function Home() {
           {/* Search widget */}
           <div className="lg:justify-self-end w-full max-w-md">
             <div className="bg-neutral-900/80 backdrop-blur-xl border border-neutral-800 rounded-2xl p-8 shadow-2xl">
-              <h3 className="font-display font-bold text-2xl text-white mb-1">Find Your Vehicle</h3>
-              <p className="text-sm text-neutral-400 mb-1">Search our current inventory</p>
-              <p className="text-xs text-neutral-500 italic mb-6">Encuentra tu vehículo · Busca nuestro inventario</p>
+              <h3 className="font-display font-bold text-2xl text-white mb-1">{t.search.title}</h3>
+              <p className="text-sm text-neutral-400 mb-6">{t.search.subtitle}</p>
+              
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs uppercase tracking-wider text-neutral-500 mb-1.5 block">Make</label>
+                  <label className="text-xs uppercase tracking-wider text-neutral-500 mb-1.5 block">{t.search.make}</label>
                   <Select value={make} onValueChange={setMake}>
                     <SelectTrigger className="bg-neutral-950 border-neutral-800 text-white h-11">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-neutral-900 border-neutral-800 text-white">
                       {makes.map((m) => (
-                        <SelectItem key={m} value={m}>{m}</SelectItem>
+                        <SelectItem key={m} value={m}>{m === "All Makes" ? t.search.allMakes : m}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
                 <div>
-                  <label className="text-xs uppercase tracking-wider text-neutral-500 mb-1.5 block">Max Price</label>
+                  <label className="text-xs uppercase tracking-wider text-neutral-500 mb-1.5 block">{t.search.maxPrice}</label>
                   <Select value={String(maxPrice)} onValueChange={(v) => setMaxPrice(Number(v))}>
                     <SelectTrigger className="bg-neutral-950 border-neutral-800 text-white h-11">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-neutral-900 border-neutral-800 text-white">
                       {priceRanges.map((p) => (
-                        <SelectItem key={p.value} value={String(p.value)}>{p.label}</SelectItem>
+                        <SelectItem key={p.value} value={String(p.value)}>{p.label === "No Max Price" ? t.search.noMax : p.label}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
                 <div>
-                  <label className="text-xs uppercase tracking-wider text-neutral-500 mb-1.5 block">Keyword</label>
+                  <label className="text-xs uppercase tracking-wider text-neutral-500 mb-1.5 block">{t.search.keyword}</label>
                   <div className="relative">
                     <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
                     <Input
                       value={query}
                       onChange={(e) => setQuery(e.target.value)}
-                      placeholder="e.g. Tacoma"
+                      placeholder={t.search.keywordPh}
                       className="bg-neutral-950 border-neutral-800 text-white h-11 pl-10 placeholder:text-neutral-600"
                     />
                   </div>
@@ -142,7 +142,7 @@ export default function Home() {
                   className="block"
                 >
                   <Button className="w-full bg-red-600 hover:bg-red-500 text-neutral-950 font-semibold h-12 rounded-xl btn-glow">
-                    Search Vehicles <Search className="w-4 h-4 ml-2" />
+                    {t.search.searchBtn} <Search className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
               </div>
@@ -171,12 +171,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
             <div>
-              <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Featured</span>
-              <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2">Fresh Off The Lot</h2>
-              <p className="text-sm text-neutral-500 italic mt-1">Recién llegados al lote</p>
+              <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">{t.featured.eyebrow}</span>
+              <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2">{t.featured.title}</h2>
+              
             </div>
             <Link to="/inventory" className="text-red-500 hover:text-red-400 font-medium flex items-center gap-1 group">
-              View All Vehicles <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              {t.featured.viewAll} <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -191,19 +191,19 @@ export default function Home() {
       <section className="relative section-warm py-24">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Why Xclusive</span>
+            <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">{t.whyUs.eyebrow}</span>
             <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2 mb-2">
-              A Better Way To <span className="gradient-text">Buy A Car</span>
+              {t.whyUs.title1} <span className="gradient-text">{t.whyUs.title2}</span>
             </h2>
-            <p className="text-sm text-neutral-500 italic mb-6">Una mejor manera de comprar un auto</p>
+            
             <p className="text-neutral-400 leading-relaxed mb-8">
-              We’ve been serving the Hanover community with reliable, hand-inspected vehicles and honest financing. No pressure. No games. Just great cars.
+              {t.whyUs.desc}
             </p>
             <div className="space-y-5">
               {[
-                { i: ShieldCheck, t: "Certified Inspected", d: "Every vehicle is inspected & repaired by a certified mechanic before sale." },
-                { i: CreditCard, t: "No Credit Check Financing", d: "Verified income & 4 references — that’s all it takes. Easy in-house financing." },
-                { i: Wrench, t: "Trade-Ins Welcome", d: "Get top value for your trade. We’ll make it simple and fair." },
+                { i: ShieldCheck, t: t.whyUs.f1t, d: t.whyUs.f1d },
+                { i: CreditCard, t: t.whyUs.f2t, d: t.whyUs.f2d },
+                { i: Wrench, t: t.whyUs.f3t, d: t.whyUs.f3d },
               ].map((f) => (
                 <div key={f.t} className="flex gap-4 p-5 rounded-xl border border-neutral-800 bg-neutral-900/50 hover:border-red-600/50 hover:bg-neutral-900 transition-all group">
                   <div className="w-12 h-12 rounded-lg bg-red-600/10 border border-red-600/30 flex items-center justify-center flex-shrink-0 group-hover:bg-red-600/20">
@@ -233,7 +233,7 @@ export default function Home() {
                       <Phone className="w-5 h-5 text-neutral-950" />
                     </div>
                     <div>
-                      <p className="text-xs text-neutral-400 uppercase tracking-wider">Call us today</p>
+                      <p className="text-xs text-neutral-400 uppercase tracking-wider">{t.whyUs.callToday}</p>
                       <a href={`tel:${dealerInfo.phoneRaw}`} className="font-display font-bold text-white text-xl hover:text-red-500">
                         {dealerInfo.phone}
                       </a>
@@ -250,9 +250,9 @@ export default function Home() {
       <section ref={testiRef} className={`section-dark py-24 section-fade ${testiVisible ? "visible" : ""}`}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Reviews</span>
-            <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2">Trusted By Drivers</h2>
-            <p className="text-sm text-neutral-500 italic mt-1">De confianza para nuestros clientes</p>
+            <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">{t.testimonials.eyebrow}</span>
+            <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2">{t.testimonials.title}</h2>
+            
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t) => (
@@ -278,15 +278,15 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="max-w-xl">
             <h2 className="font-display font-black text-3xl md:text-4xl text-neutral-950 leading-tight">
-              Ready to drive off the lot today?
+              {t.cta.title}
             </h2>
-            <p className="text-neutral-900/90 italic text-sm mt-1">¿Listo para llevarte tu auto hoy?</p>
-            <p className="text-neutral-900/80 mt-2">Come visit our lot in Hanover — or start online in 60 seconds.</p>
+            
+            <p className="text-neutral-900/80 mt-2">{t.cta.desc}</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link to="/financing">
               <Button size="lg" className="bg-neutral-950 hover:bg-neutral-800 text-white rounded-full px-7 h-12 font-semibold">
-                Apply For Financing
+                {t.cta.apply}
               </Button>
             </Link>
             <a href={`tel:${dealerInfo.phoneRaw}`}>
@@ -302,9 +302,9 @@ export default function Home() {
       <section className="section-mid py-24">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">Visit Us</span>
-            <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2 mb-2">Come Say Hello</h2>
-            <p className="text-sm text-neutral-500 italic mb-6">Ven a saludarnos</p>
+            <span className="text-red-600 text-xs uppercase tracking-[0.3em] font-semibold">{t.location.eyebrow}</span>
+            <h2 className="font-display font-black text-4xl md:text-5xl text-white mt-2 mb-6">{t.location.title}</h2>
+            
             <div className="flex items-start gap-3 mb-4 text-neutral-300">
               <MapPin className="w-5 h-5 text-red-500 mt-0.5" />
               <span>{dealerInfo.address}, {dealerInfo.city}</span>
@@ -315,7 +315,7 @@ export default function Home() {
             </div>
             <Link to="/contact">
               <Button className="bg-red-600 hover:bg-red-500 text-neutral-950 font-semibold rounded-full px-6">
-                Get Directions <ArrowRight className="w-4 h-4 ml-2" />
+                {t.location.directions} <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
           </div>

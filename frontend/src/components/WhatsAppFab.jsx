@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { dealerInfo } from "../mock";
+import { useLang } from "../i18n";
 
 // Official WhatsApp glyph
 function WhatsAppIcon({ className = "w-6 h-6" }) {
@@ -11,6 +12,7 @@ function WhatsAppIcon({ className = "w-6 h-6" }) {
 }
 
 export default function WhatsAppFab() {
+  const { t } = useLang();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -19,7 +21,7 @@ export default function WhatsAppFab() {
   }, []);
 
   const href = `https://wa.me/1${dealerInfo.phoneRaw}?text=${encodeURIComponent(
-    "Hi Xclusive Auto! I'm interested in a vehicle."
+    t.wa.greeting
   )}`;
 
   return (
@@ -38,8 +40,8 @@ export default function WhatsAppFab() {
         <WhatsAppIcon className="w-7 h-7 relative" />
       </span>
       <span className="hidden sm:flex flex-col leading-tight">
-        <span className="text-sm font-semibold">Chat with us</span>
-        <span className="text-[10px] opacity-90 italic">Escríbenos por WhatsApp</span>
+        <span className="text-sm font-semibold">{t.wa.chat}</span>
+        <span className="text-[10px] opacity-90">{t.wa.label}</span>
       </span>
     </a>
   );

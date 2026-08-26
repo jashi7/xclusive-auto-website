@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { Gauge, Fuel, Cog, Palette } from "lucide-react";
+import { useLang } from "../i18n";
 
 const formatMiles = (m) => new Intl.NumberFormat("en-US").format(m);
 const formatPrice = (p) => `$${new Intl.NumberFormat("en-US").format(p)}`;
 
 export default function VehicleCard({ car }) {
+  const { t } = useLang();
   return (
     <Link to={`/vehicle/${car.id}`}>
       <div className="vehicle-card group relative bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden cursor-pointer h-full flex flex-col">
@@ -19,7 +21,7 @@ export default function VehicleCard({ car }) {
             {car.year}
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-            <span className="text-red-500 text-sm font-semibold tracking-wider uppercase">View Details →</span>
+            <span className="text-red-500 text-sm font-semibold tracking-wider uppercase">{t.card.view} →</span>
           </div>
         </div>
         <div className="p-5 flex-1 flex flex-col">
