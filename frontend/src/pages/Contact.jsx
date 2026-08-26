@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, Instagram, Facebook, MessageCircle } from "lucide-react";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Button } from "../components/ui/button";
@@ -67,6 +67,24 @@ export default function Contact() {
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div className="p-6 rounded-xl border border-neutral-800 bg-neutral-900/60">
+            <h3 className="font-display font-bold text-white text-lg mb-4">Follow Us <span className="text-xs text-neutral-500 italic font-normal">· Síguenos</span></h3>
+            <div className="grid grid-cols-3 gap-3">
+              <a href="https://www.instagram.com/xclusive.auto/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 p-4 rounded-lg border border-neutral-800 hover:border-red-600 hover:bg-red-600/10 transition group">
+                <Instagram className="w-6 h-6 text-neutral-300 group-hover:text-red-500" />
+                <span className="text-xs text-neutral-400 group-hover:text-white">Instagram</span>
+              </a>
+              <a href="https://www.facebook.com/xclusiveautollc" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 p-4 rounded-lg border border-neutral-800 hover:border-red-600 hover:bg-red-600/10 transition group">
+                <Facebook className="w-6 h-6 text-neutral-300 group-hover:text-red-500" />
+                <span className="text-xs text-neutral-400 group-hover:text-white">Facebook</span>
+              </a>
+              <a href={`https://wa.me/1${dealerInfo.phoneRaw}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-2 p-4 rounded-lg border border-neutral-800 hover:border-green-500 hover:bg-green-500/10 transition group">
+                <MessageCircle className="w-6 h-6 text-neutral-300 group-hover:text-green-400" />
+                <span className="text-xs text-neutral-400 group-hover:text-white">WhatsApp</span>
+              </a>
+            </div>
           </div>
 
           <div className="rounded-xl overflow-hidden border border-neutral-800 aspect-video">

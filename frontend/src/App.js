@@ -9,6 +9,7 @@ import VehicleDetail from "./pages/VehicleDetail";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import WhatsAppFab from "./components/WhatsAppFab";
 import { Toaster } from "./components/ui/toaster";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/vehicle/:id" element={<VehicleDetail />} />
         </Routes>
         <Footer />
+        <WhatsAppFab />
         <Toaster />
       </BrowserRouter>
     </div>

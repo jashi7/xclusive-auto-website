@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
-import { Phone, MapPin, Mail, Clock, Facebook, Instagram, Twitter } from "lucide-react";
+import { Phone, MapPin, Mail, Facebook, Instagram, MessageCircle } from "lucide-react";
 import { dealerInfo } from "../mock";
 
 export default function Footer() {
+  const socials = [
+    { Icon: Instagram, href: "https://www.instagram.com/xclusive.auto/", label: "Instagram" },
+    { Icon: Facebook, href: "https://www.facebook.com/xclusiveautollc", label: "Facebook" },
+    { Icon: MessageCircle, href: `https://wa.me/1${dealerInfo.phoneRaw}`, label: "WhatsApp" },
+  ];
+
   return (
     <footer className="bg-neutral-950 border-t border-neutral-900 text-neutral-300">
       <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -13,14 +19,17 @@ export default function Footer() {
             Drive off the lot with confidence.
           </p>
           <div className="flex gap-3 mt-5">
-            {[Facebook, Instagram, Twitter].map((Icon, i) => (
+            {socials.map((s) => (
               <a
-                key={i}
-                href="#"
-                className="w-9 h-9 rounded-full border border-neutral-800 flex items-center justify-center hover:border-red-600 hover:text-red-500 transition-colors"
-                aria-label="social"
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-400 hover:border-red-600 hover:text-red-500 hover:bg-red-600/10 transition-all"
+                aria-label={s.label}
+                title={s.label}
               >
-                <Icon className="w-4 h-4" />
+                <s.Icon className="w-4 h-4" />
               </a>
             ))}
           </div>
